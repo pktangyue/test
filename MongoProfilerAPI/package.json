@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.1",
+    "moment": "^2.10.3",
     "mongodb": "^2.0.39"
   }
 }
