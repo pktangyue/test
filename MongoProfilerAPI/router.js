@@ -16,7 +16,7 @@ router.param('year', function ( req, res, next, year){
         next();
     }
     else {
-        res.send('you should enter a valid year');
+        res.status(500).send('you should enter a valid year');
         return;
     }
 });
@@ -29,14 +29,14 @@ router.get('/:year/perday', function ( req, res) {
     var date = moment.utc(req.year + req.query.date, DATE_VALID_FORMAT, true)
     console.log('date : ' + req.query.date);
     if ( req.query.date && ! date.isValid()){
-        res.send('date must be a valid date');
+        res.status(500).send('date must be a valid date');
         return;
     }
 
     var recent = req.query.recent;
     console.log('recent : ' + recent);
     if ( recent && ! isPositiveNumber(recent) ) {
-        res.send('recent must be a positive integer');
+        res.status(500).send('recent must be a positive integer');
         return;
     }
 
@@ -49,21 +49,21 @@ router.get('/:year/perweek', function ( req, res) {
     var week = req.query.week;
     console.log('week : ' +  week );
     if ( week && ( ! isPositiveNumber( week ) || parseInt( week ) > 53) ) {
-        res.send('week must be a valid week');
+        res.status(500).send('week must be a valid week');
         return;
     }
 
     var date = moment.utc(req.year + req.query.date, DATE_VALID_FORMAT, true)
     console.log('date : ' + req.query.date);
     if ( req.query.date && ! date.isValid()){
-        res.send('date must be a valid date');
+        res.status(500).send('date must be a valid date');
         return;
     }
 
     var recent = req.query.recent;
     console.log('recent : ' + recent);
     if ( recent && ! isPositiveNumber(recent) ) {
-        res.send('recent must be a positive integer');
+        res.status(500).send('recent must be a positive integer');
         return;
     }
 
@@ -76,14 +76,14 @@ router.get('/:year/permonth', function ( req, res) {
     var month = req.query.month
     console.log('month : ' + month );
     if ( month && ( ! isPositiveNumber( month ) || parseInt( month ) > 12) ) {
-        res.send('month must be a valid month');
+        res.status(500).send('month must be a valid month');
         return;
     }
 
     var recent = req.query.recent;
     console.log('recent : ' + recent);
     if ( recent && ! isPositiveNumber(recent) ) {
-        res.send('recent must be a positive integer');
+        res.status(500).send('recent must be a positive integer');
         return;
     }
 
