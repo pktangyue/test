@@ -1,16 +1,17 @@
 {
   "name": "mongoprofilerapi",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "实现一组 Restful API，读取 Mongodb profile，计算一年内每天，每周，每月的平均响应时间并返回 JSON 格式数据。",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "pktangyue",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.13.1",
     "moment": "^2.10.3",
     "mongodb": "^2.0.39"
-  }
+  },
+  "devDependencies": {}
 }
