@@ -13,5 +13,11 @@
     "moment": "^2.10.3",
     "mongodb": "^2.0.39"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "async": "^1.4.0",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2",
+    "supertest": "^1.0.1"
+  }
 }

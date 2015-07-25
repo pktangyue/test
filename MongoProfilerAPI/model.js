@@ -21,8 +21,8 @@ var getPerDayAvgTime = function(year, date, recent, callback){
                     start_date = moment.utc().year(parseInt(year)).startOf('year');
                     end_date = start_date.clone().endOf('year');
                 }
-                console.log('start_date ' + start_date.toISOString());
-                console.log('end_date ' + end_date.toISOString());
+                // console.log('start_date ' + start_date.toISOString());
+                // console.log('end_date ' + end_date.toISOString());
                 ret.push({ $match : {
                     ts : {
                         $gte : start_date.toDate(),
@@ -38,7 +38,7 @@ var getPerDayAvgTime = function(year, date, recent, callback){
                 } });
                 ret.push( { $sort: {_id: -1}} );
                 if ( recent && recent > 0 ) {
-                    console.log('recent : ' + recent);
+                    // console.log('recent : ' + recent);
                     ret.push( { $limit: recent } );
                 }
                 ret.push( { 
@@ -79,8 +79,8 @@ var getPerWeekAvgTime = function(year, date, week, recent, callback){
                     start_date = moment.utc().year(parseInt(year)).startOf('year');
                     end_date = start_date.clone().endOf('year');
                 }
-                console.log('start_date ' + start_date.toISOString());
-                console.log('end_date ' + end_date.toISOString());
+                // console.log('start_date ' + start_date.toISOString());
+                // console.log('end_date ' + end_date.toISOString());
 
                 ret.push({ $match : {
                     ts : {
@@ -94,7 +94,7 @@ var getPerWeekAvgTime = function(year, date, week, recent, callback){
                 } });
                 ret.push( { $sort: {_id: -1}} );
                 if ( recent && recent > 0 ) {
-                    console.log('recent : ' + recent);
+                    // console.log('recent : ' + recent);
                     ret.push( { $limit: recent } );
                 }
                 ret.push( { 
@@ -131,8 +131,8 @@ var getPerMonthAvgTime = function(year, month, recent, callback){
                     start_date = moment.utc().year(parseInt(year)).startOf('year');
                     end_date = start_date.clone().endOf('year');
                 }
-                console.log('start_date ' + start_date.toISOString());
-                console.log('end_date ' + end_date.toISOString());
+                // console.log('start_date ' + start_date.toISOString());
+                // console.log('end_date ' + end_date.toISOString());
 
                 ret.push({ $match : {
                     ts : {
@@ -146,7 +146,7 @@ var getPerMonthAvgTime = function(year, month, recent, callback){
                 } });
                 ret.push( { $sort: {_id: -1}} );
                 if ( recent && recent > 0 ) {
-                    console.log('recent : ' + recent);
+                    // console.log('recent : ' + recent);
                     ret.push( { $limit: recent } );
                 }
                 ret.push( { 
