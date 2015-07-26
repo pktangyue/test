@@ -4,7 +4,7 @@ var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
 var moment = require('moment');
 
-var getPerDayAvgTime = function(year, date, recent, callback){
+var getPerDayAvgTime = function(year, date, limit, callback){
     MongoClient.connect(url, function(err, db) {
         assert.equal(null, err);
         db.collection('system.profile').aggregate(
@@ -37,9 +37,9 @@ var getPerDayAvgTime = function(year, date, recent, callback){
                     'avgtime' : { $avg : '$millis'} 
                 } });
                 ret.push( { $sort: {_id: -1}} );
-                if ( recent && recent > 0 ) {
-                    // console.log('recent : ' + recent);
-                    ret.push( { $limit: recent } );
+                if ( limit && limit > 0 ) {
+                    // console.log('limit : ' + limit);
+                    ret.push( { $limit: limit } );
                 }
                 ret.push( { 
                     $project : { 
@@ -59,7 +59,7 @@ var getPerDayAvgTime = function(year, date, recent, callback){
     });
 };
 
-var getPerWeekAvgTime = function(year, date, week, recent, callback){
+var getPerWeekAvgTime = function(year, date, week, limit, callback){
     MongoClient.connect(url, function(err, db) {
         assert.equal(null, err);
         db.collection('system.profile').aggregate(
@@ -93,9 +93,9 @@ var getPerWeekAvgTime = function(year, date, week, recent, callback){
                     'avgtime' : { $avg : '$millis'} 
                 } });
                 ret.push( { $sort: {_id: -1}} );
-                if ( recent && recent > 0 ) {
-                    // console.log('recent : ' + recent);
-                    ret.push( { $limit: recent } );
+                if ( limit && limit > 0 ) {
+                    // console.log('limit : ' + limit);
+                    ret.push( { $limit: limit } );
                 }
                 ret.push( { 
                     $project : { 
@@ -115,7 +115,7 @@ var getPerWeekAvgTime = function(year, date, week, recent, callback){
     });
 };
 
-var getPerMonthAvgTime = function(year, month, recent, callback){
+var getPerMonthAvgTime = function(year, month, limit, callback){
     MongoClient.connect(url, function(err, db) {
         assert.equal(null, err);
         db.collection('system.profile').aggregate(
@@ -145,9 +145,9 @@ var getPerMonthAvgTime = function(year, month, recent, callback){
                     'avgtime' : { $avg : '$millis'} 
                 } });
                 ret.push( { $sort: {_id: -1}} );
-                if ( recent && recent > 0 ) {
-                    // console.log('recent : ' + recent);
-                    ret.push( { $limit: recent } );
+                if ( limit && limit > 0 ) {
+                    // console.log('limit : ' + limit);
+                    ret.push( { $limit: limit } );
                 }
                 ret.push( { 
                     $project : { 

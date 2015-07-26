@@ -29,14 +29,14 @@ router.get('/:year/perday', function ( req, res) {
         return;
     }
 
-    var recent = req.query.recent;
-    // console.log('recent : ' + recent);
-    if ( recent && ! isPositiveNumber(recent) ) {
-        res.status(500).send('recent must be a positive integer');
+    var limit = req.query.limit;
+    // console.log('limit : ' + limit);
+    if ( limit && ! isPositiveNumber(limit) ) {
+        res.status(500).send('limit must be a positive integer');
         return;
     }
 
-    model.getPerDayAvgTime(req.year, date, parseInt(recent), function(result) {
+    model.getPerDayAvgTime(req.year, date, parseInt(limit), function(result) {
         res.send(result);
     });
 });
@@ -56,14 +56,14 @@ router.get('/:year/perweek', function ( req, res) {
         return;
     }
 
-    var recent = req.query.recent;
-    // console.log('recent : ' + recent);
-    if ( recent && ! isPositiveNumber(recent) ) {
-        res.status(500).send('recent must be a positive integer');
+    var limit = req.query.limit;
+    // console.log('limit : ' + limit);
+    if ( limit && ! isPositiveNumber(limit) ) {
+        res.status(500).send('limit must be a positive integer');
         return;
     }
 
-    model.getPerWeekAvgTime(req.year, date, week, parseInt(recent), function(result) {
+    model.getPerWeekAvgTime(req.year, date, week, parseInt(limit), function(result) {
         res.send(result);
     });
 });
@@ -76,14 +76,14 @@ router.get('/:year/permonth', function ( req, res) {
         return;
     }
 
-    var recent = req.query.recent;
-    // console.log('recent : ' + recent);
-    if ( recent && ! isPositiveNumber(recent) ) {
-        res.status(500).send('recent must be a positive integer');
+    var limit = req.query.limit;
+    // console.log('limit : ' + limit);
+    if ( limit && ! isPositiveNumber(limit) ) {
+        res.status(500).send('limit must be a positive integer');
         return;
     }
 
-    model.getPerMonthAvgTime(req.year, month, parseInt(recent), function(result) {
+    model.getPerMonthAvgTime(req.year, month, parseInt(limit), function(result) {
         res.send(result);
     });
 });

@@ -17,7 +17,7 @@ describe('test/app.test.js', function () {
         var urls = [
             '/api/avgtime/2015/perday',
             '/api/avgtime/2015/perday?date=0723',
-            '/api/avgtime/2015/perday?recent=2'
+            '/api/avgtime/2015/perday?limit=2'
         ];
         var test = function (value, callback) {
             request.get(value)
@@ -55,7 +55,7 @@ describe('test/app.test.js', function () {
             '/api/avgtime/2015/perweek',
             '/api/avgtime/2015/perweek?week=30',
             '/api/avgtime/2015/perweek?date=0723',
-            '/api/avgtime/2015/perweek?recent=1'
+            '/api/avgtime/2015/perweek?limit=1'
         ];
         var test = function (value, callback) {
             request.get(value)
@@ -94,7 +94,7 @@ describe('test/app.test.js', function () {
         var urls = [
             '/api/avgtime/2015/permonth',
             '/api/avgtime/2015/permonth?month=7',
-            '/api/avgtime/2015/permonth?recent=1'
+            '/api/avgtime/2015/permonth?limit=1'
         ];
         var test = function (value, callback) {
             request.get(value)
@@ -162,11 +162,11 @@ describe('test/app.test.js', function () {
         ]
     );
 
-    test_500('recent must be a positive integer',
+    test_500('limit must be a positive integer',
         [
-            '/api/avgtime/2015/perday?recent=0',
-            '/api/avgtime/2015/perweek?recent=a',
-            '/api/avgtime/2015/permonth?recent=0a'
+            '/api/avgtime/2015/perday?limit=0',
+            '/api/avgtime/2015/perweek?limit=a',
+            '/api/avgtime/2015/permonth?limit=0a'
         ]
     );
 
