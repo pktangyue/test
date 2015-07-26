@@ -13,6 +13,21 @@ describe('test/app.test.js', function () {
         });
     });
 
+    it('should return a Array like [ { "title" : "aa", "href" : "bb" } ]', function (done) {
+        request.get('/api/')
+        .expect(200)
+        .end(function (err, res) {
+            should.not.exist(err);
+
+            JSON.parse(res.text).should.not.throw();
+            var result = JSON.parse(res.text);
+            result.should.matchEach(function (value) {
+                value.should.have.keys('title', 'href');
+            });
+            done();
+        });
+    });
+
     it('should return a Array like [ { "avgtime" : 1, "date" : "2015-07-26" } ]', function(done) {
         var urls = [
             '/api/avgtime/2015/perday',
@@ -31,8 +46,8 @@ describe('test/app.test.js', function () {
 
                 result.should.be.an.Array();
                 if ( result.length > 0 ) {
-                    result.forEach(function(elem) {
-                        elem.should.match( { 
+                    result.should.matchEach(function(value) {
+                        value.should.match( { 
                             'date' : /^\d{4}-\d{2}-\d{2}$/,
                             'avgtime' : function (it) {
                                 it.should.be.an.Number();
@@ -69,8 +84,8 @@ describe('test/app.test.js', function () {
 
                 result.should.be.an.Array();
                 if ( result.length > 0 ) {
-                    result.forEach(function(elem) {
-                        elem.should.match( {
+                    result.should.matchEach(function(value) {
+                        value.should.match( { 
                             'week' : function (it) {
                                 it.should.be.within(0, 53);
                             },
@@ -108,8 +123,8 @@ describe('test/app.test.js', function () {
 
                 result.should.be.an.Array();
                 if ( result.length > 0 ) {
-                    result.forEach(function(elem) {
-                        elem.should.match( { 
+                    result.should.matchEach(function(value) {
+                        value.should.match( { 
                             'month' : function (it) {
                                 it.should.be.within(1, 12);
                             },
